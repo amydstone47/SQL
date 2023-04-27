@@ -1,0 +1,8 @@
+CREATE TABLE makeup_store (id INTEGER PRIMARY KEY, name TEXT, category TEXT, price INTEGER, shade_range INTEGER, quantity INTEGER);
+INSERT INTO makeup_store VALUES(1, "foundation", "face", 45, 10, 5);
+INSERT INTO makeup_store VALUES(2, "blush", "cheeks", 30, 5, 5);
+INSERT INTO makeup_store VALUES(3, "eyeliner", "eyes", 15, 8, 5);
+
+SELECT * FROM makeup_store;
+SELECT * FROM makeup_store ORDER BY price;
+SELECT SUM(quantity) FROM makeup_store;
