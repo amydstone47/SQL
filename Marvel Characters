@@ -1,0 +1,31 @@
+/* Create table about the people and what they do here */
+
+CREATE TABLE marvel_characters (id integer primary key, name TEXT, alias TEXT, partner TEXT);
+
+INSERT into marvel_characters VALUES (1, "Black Widow", "Natasha Romanoff", "The Hulk");
+INSERT into marvel_characters VALUES (2, "Spiderman", "Peter Parker", "MJ Watson");
+INSERT into marvel_characters VALUES (3, "The Hulk", "Bruce Wane", "Black Widow");
+INSERT into marvel_characters VALUES (4, "MJ Watson", "", "Spiderman");
+INSERT into marvel_characters VALUES (5, "Scarlet Witch", "Wanda Maximoff", "Vision");
+INSERT into marvel_characters VALUES (6, "Vision", "Victor Shade", "Scarlet Witch");
+
+SELECT * FROM marvel_characters;
+
+CREATE TABLE marvel_superpowers (id integer primary key, name TEXT, superpower TEXT);
+
+INSERT into marvel_superpowers  VALUES (1, "Black Widow", "endurance and martial arts");
+INSERT into marvel_superpowers  VALUES (2, "Spiderman", "shoot spider webs");
+INSERT into marvel_superpowers VALUES (3, "The Hulk", "super strength");
+INSERT into marvel_superpowers VALUES (4, "MJ Watson", "");
+INSERT into marvel_superpowers VALUES (5, "Scarlet Witch", "chaos magic");
+INSERT into marvel_superpowers VALUES (6, "Vision", "Synthezoid Abilities");
+
+SELECT * FROM marvel_superpowers;
+
+SELECT marvel_characters.alias, marvel_superpowers.superpower
+FROM marvel_characters
+JOIN marvel_superpowers
+ON marvel_characters.name = marvel_superpowers.name;
+
+SELECT marvel_characters.name, marvel_characters.partner
+FROM marvel_characters;
