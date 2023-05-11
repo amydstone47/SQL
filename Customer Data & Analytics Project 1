@@ -37,7 +37,7 @@ ORDER BY Revenue ASC;
 SELECT Product, SUM(quantity), SUM(quantity)*price AS Revenue
 FROM BIT_DB.FebSales
 WHERE location = '548 Lincoln St, Seattle, WA 98101'
-GROUP BY Product;
+GROUP BY Product;''
 
 --How many customers ordered more than 2 products at a time in February, and what was the average amount spent for those customers?--
 
@@ -48,3 +48,9 @@ ON FebSales.orderID = customers.order_id
 WHERE FebSales.Quantity > 2
 AND length (orderID) = 6
 AND orderID <> 'Order ID';
+
+--List all the products sold in Los Angeles in February, and include how many of each were sold.--
+SELECT distinct Product, SUM(Quantity)
+FROM BIT_DB.FebSales
+WHERE location like '%Los Angeles%'
+GROUP BY Product;
