@@ -1,0 +1,53 @@
+--For this project, I downloaded Spotify data from Kaggle. Then I created a table to insert Spotify data into. Finally, I performed analytics on the data using SQL. 
+
+SELECT * FROM BIT_DB.Spotifydata;
+
+--What artist released the longest song? 
+SELECT artist_name, duration_ms
+FROM BIT_DB.SpotifyData
+ORDER BY duration_ms DESC
+LIMIT 1;
+
+--Who are the top 10 artists based on popularity? 
+SELECT distinct artist_name, popularity
+FROM BIT_DB.Spotifydata
+ORDER BY popularity DESC
+LIMIT 10;
+
+--What's the average danceability for the 10 most popular songs? 
+SELECT avg(danceability), track_name
+FROM BIT_DB.Spotifydata
+GROUP BY track_name, popularity
+ORDER BY popularity DESC
+LIMIT 10;
+
+--What is the average popularity, danceability and energy by artist and track? 
+SELECT artist_name, track_name, avg(popularity), avg(danceability), avg(energy)
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name, track_name;
+
+--Which artists had more than 1 song on the top 50 chart?
+SELECT artist_name, count(artist_name) AS numberofsongsontop50 FROM BIT_DB.Spotifydata 
+GROUP BY artist_name
+HAVING numberofsongsontop50 > 1
+ORDER BY numberofsongsontop50 DESC;
+
+--What is the correlation between tempo and song popularity?
+SELECT track_name, artist_name, tempo, avg(popularity)
+FROM BIT_DB.Spotifydata
+GROUP BY track_name
+ORDER BY avg(popularity) DESC;
+--Based on this data, it does not look like there is a correlation between tempo and song popularity.
+
+
+--Is it a bop or a flop (Query using a CASE statement)?
+SELECT track_name,
+CASE
+WHEN energy > .64 AND danceability > .68 THEN "BOP!"
+WHEN energy > .44 AND danceability > .50 THEN "Eh Not Bad"
+ELSE "FLOP"
+END AS "BopOrFlop"
+FROM BIT_DB.Spotifydata
+GROUP BY track_name
+ORDER BY BopOrFlop ASC;
+
